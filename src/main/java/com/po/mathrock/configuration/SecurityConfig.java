@@ -22,8 +22,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .anyRequest()
                 .authenticated()
             .and()
+                // without this the user can not be authenticated
                 .formLogin()
-                    .permitAll()
+                    // here define which endpoint should be used in case of login is necessary
+                    .loginPage("/login")
+                        // can be accessed by everybody
+                        .permitAll()
             .and()
                 .logout().logoutSuccessUrl("/login?logout")
                     .permitAll()
