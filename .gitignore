@@ -4,6 +4,7 @@
 ### Spring ###
 # Sensitive data:
 /src/main/resources/application.properties
+/src/main/java/com/po/mathrock/configuration/SecurityUserConfig.java
 ### END Spring ###
 
 ### Intellij+all ###
@@ -105,3 +106,4 @@ hs_err_pid*
 ## ignoring target file
 target/
 ### END Java-Web ###
+
