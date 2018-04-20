@@ -2,9 +2,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <div th:replace="fragments/header :: header-head">
-        Place for Thymeleaf Fragment Header Info.
-    </div>
+    <th:block th:replace="fragments/header :: header-head"/>
 </head>
 <body>
     <div th:replace="fragments/header :: header-navbar">
@@ -35,5 +33,6 @@
             </form>
         </div>
     </div>
+    <div th:replace="fragments/header :: header-jsfiles"></div>
 </body>
 </html>
