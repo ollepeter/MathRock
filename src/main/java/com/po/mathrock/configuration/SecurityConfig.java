@@ -17,7 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             // check the following requests and authorized according to the rules (antmacher() + condition)
             .authorizeRequests()
                 .antMatchers("/", "/index")
-                    .hasRole("USER")
+                    .permitAll()
             // IMPORTANT!!! all the requests require authentication
             .anyRequest()
                 .authenticated()
