@@ -4,9 +4,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
     <head>
-        <div th:replace="fragments/header :: header-head">
-            Place for Thymeleaf Fragment Header Info.
-        </div>
+        <th:block th:replace="fragments/header :: header-head"/>
     </head>
     <body>
         <div th:replace="fragments/header :: header-navbar">
@@ -19,5 +17,6 @@
         <h3 sec:authorize="isAuthenticated()">
             Roles: <span sec:authentication="principal.authorities"></span>
         </h3>
+        <div th:replace="fragments/header :: header-jsfiles"></div>
     </body>
 </html>
