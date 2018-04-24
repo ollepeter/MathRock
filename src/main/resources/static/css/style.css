@@ -2,8 +2,42 @@ h1 {
     background-color: red;
 }
 
+body {
+    background-color: #b3b3b3;
+}
+
 #po-login-form-container {
-    margin-top: 3%;
+    margin-top: 30px;
     padding-top: 32px;
     padding-bottom: 32px;
 }
+
+#header-image {
+    position: relative;
+    /*top: -50%;*/
+    /*left: -50%;*/
+    width: 100%;
+    height: 10%;
+}
+
+.sajt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: chocolate;
+}
+
+#header-image img {
+    background-repeat: no-repeat;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 100%;
+    height: 200px;
+}
+
+
+
+
