@@ -9,6 +9,10 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
             <meta http-equiv="Content-Type" content="text/html"/>
 
+
+            <!-- Font Awesome CSS -->
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+                  integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous"/>
             <!-- Bootstrap CSS -->
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
                   integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"/>
@@ -22,6 +26,7 @@
     <body>
         <div th:fragment="header-navbar">
             <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content"
                         aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,8 +34,8 @@
 
                 <!-- Brand -->
                 <a class="navbar-brand" href="#" th:href="@{/index}">
-                    <img src="../../static/images/logo/white_red_pi_guitar_pick.jpg"
-                         th:src="@{images/logo/white_red_pi_guitar_pick.jpg}"
+                    <img src="../../static/images/logo/white_red_pi_guitar_pick.png"
+                         th:src="@{images/logo/white_red_pi_guitar_pick.png}"
                          width="30" height="30" alt="Picker Pi"/>
                 </a>
 
@@ -49,7 +54,39 @@
                         </li>
                     </ul>
                 </div>
+
+                <div class="navbar-text navbar-right">
+                    <div class="d-inline">
+                        Welcome "<span sec:authentication="name">Anonynmus</span>" !
+                    </div>
+                    <div sec:authorize="isAuthenticated()" class="d-inline">
+                        <form id="frmlogout" th:action="@{/logout}" method="post" class="d-inline form-inline">
+                            | <a  href="javascript:{}" onclick="document.getElementById('frmlogout').submit(); return false;"> Logout</a>
+                        </form>
+                    </div>
+                </div>
+
             </nav>
+        </div>
+
+        <div style="position: relative"   th:fragment="header-image">
+            <div id="header-image">
+                <img class="img-fluid" alt="Blackboard"
+                     src="../../static/images/background/pi-day-2018_resize_md_small.png"
+                     th:src="@{images/background/pi-day-2018_resize_md_small.png}"/>
+                <div class="row sajt">
+                    <div class="col-9">
+                        <div class="">
+                            <p>bal-bla-bla</p>
+                        </div>
+                        <div>
+                            <h3 class="" >alamamáter elemek kaligrafika</h3>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
         </div>
 
 
