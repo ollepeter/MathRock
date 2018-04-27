@@ -8,18 +8,15 @@
     <div th:replace="fragments/header :: header-navbar">
         Place for Thymeleaf Fragment Navbar.
     </div>
-
     <div id="po-login-form-container" class="container col-md-4 jumbotron">
-        <h3 class="form-signin-heading">Please log in</h3>
-        <div id="err" th:if="${param.error}" class="alert alert-danger">Wrong username or password</div>
-        <div th:if="${param.logout}" class="alert alert-success">Logout was succesfull</div>
-        <form class="mb-0" th:action="@{/login}" method="post">
+        <h3>Registration</h3>
+        <form class="mb-0" name="registration" th:action="@{/registration}" th:object="${newUser}" method="post">
             <div class="form-group row">
                 <div class="col input-group mb-2">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="user-icon-addon"><i class="fas fa-user"></i></span>
                     </div>
-                    <input name="username" type="text" class="form-control" placeholder="Username" required="true"
+                    <input name="username" th:field="*{username}" type="text" class="form-control" placeholder="Username" required="true"
                            aria-label="Username" aria-describedby="user-icon-addon"/>
                 </div>
             </div>
@@ -28,19 +25,13 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="password-icon-addon"><i class="fas fa-lock"></i></span>
                     </div>
-                    <input name="password" type="password" class="form-control" placeholder="Password" required="true"
+                    <input name="password" th:field="*{password}" type="password" class="form-control" placeholder="Password" required="true"
                            aria-label="Password" aria-describedby="password-icon-addon"/>
                 </div>
             </div>
-            <div class="form-group row mb-1">
-                <div class="col">
-                    <button type="submit" class="btn btn-dark btn-block active">Login</button>
-                </div>
-            </div>
-            <div class="row justify-content-center mb-1">or</div>
             <div class="form-group row mb-0">
                 <div class="col">
-                    <a class="btn btn-dark btn-sm btn-block" href="/registration" th:href="@{/registration}">Register</a>
+                    <button type="submit" class="btn btn-dark btn-block active">Registration</button>
                 </div>
             </div>
         </form>

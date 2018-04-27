@@ -11,7 +11,7 @@ public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="user_id")
-    private Long id;
+    private Integer userID;
 
     @Column(nullable=false)
     private String username;
@@ -20,25 +20,25 @@ public class User {
     private String password;
 
 
-    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name="roles",
+            name="user_roles",
             joinColumns = {@JoinColumn(name="user_id")},
             inverseJoinColumns = {@JoinColumn(name="role_id")}
             )
-    private Set<Role> userRoles;
+    private Set<Role> userRoles = new HashSet<>();
 
 
     public User () {
 
     }
 
-    public Long getId() {
-        return id;
+    public Integer getId() {
+        return userID;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Integer userID) {
+        this.userID = userID;
     }
 
     public String getUsername() {
@@ -65,8 +65,15 @@ public class User {
         if(this.userRoles == null || this.userRoles.isEmpty()) {
             this.userRoles = new HashSet<>();
         }
-
         this.userRoles = userRoles;
+    }
+
+
+    public void addRoles(String roleName) {
+        if(this.userRoles == null || this.userRoles.isEmpty()) {
+            this.userRoles = new HashSet<>();
+        }
+        this.userRoles.add(new Role(roleName));
     }
 
 }

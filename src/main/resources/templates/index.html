@@ -13,13 +13,8 @@
         <div th:replace="fragments/header :: header-image">
             Place for Thymeleaf Fragment Header Image Container
         </div>
-        <h1>MathRock Index page!</h1>
-        <h3>
-            Welcome "<span sec:authentication="name">Authenticated UserName</span>" !
-        </h3>
-        <h3 sec:authorize="isAuthenticated()">
-            Roles: <span sec:authentication="principal.authorities"></span>
-        </h3>
+        <h4>MathRock Index page!</h4>
+        <p th:text="${principalka.getUsername()}">object</p>>
         <div th:replace="fragments/header :: header-jsfiles"></div>
     </body>
 </html>

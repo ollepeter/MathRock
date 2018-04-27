@@ -15,13 +15,17 @@ public class Role {
     @Column(name="role_id")
     private Integer id;
 
-    private String role;
+    private String roleName;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "userRoles")
     private Set<User> roleUsers;
 
 
     public Role() {
+    }
+
+    public Role(String roleName) {
+        this.roleName = roleName;
     }
 
     public Integer getId() {
@@ -32,12 +36,12 @@ public class Role {
         this.id = id;
     }
 
-    public String getRole() {
-        return role;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     public Set<User> getRoleUsers() {
@@ -48,7 +52,6 @@ public class Role {
         if(this.roleUsers == null || this.roleUsers.isEmpty()) {
             this.roleUsers = new HashSet<>();
         }
-
         this.roleUsers = roleUsers;
     }
 }
