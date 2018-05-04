@@ -61,6 +61,14 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
+        <!--Spring DevTool-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+
         <!--SpringBoot Test-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

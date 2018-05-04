@@ -2,7 +2,9 @@ package com.po.mathrock.controller;
 
 import com.po.mathrock.model.User;
 import com.po.mathrock.service.UserService;
+import com.po.mathrock.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,9 @@ public class IndexController {
     private UserService userService;
 
     @Autowired
+    // With the @Quailifier it can be decided which implementation of the Interface should be used.
+    // The implementing class also should have a class level @Qualifier annotation to be recognized here.
+    @Qualifier("UserServiceImpl")
     public void setUserService(UserService userService) {
         this.userService = userService;
     }

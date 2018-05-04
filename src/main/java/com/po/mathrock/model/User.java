@@ -1,5 +1,9 @@
 package com.po.mathrock.model;
 
+import com.po.mathrock.repositories.RoleRepository;
+import com.po.mathrock.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,18 +13,18 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue
     @Column(name="user_id")
     private Integer userID;
 
-    @Column(nullable=false)
+    @Column(unique=true, nullable=false)
     private String username;
 
     @Column(nullable=false)
     private String password;
 
 
-    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade= {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
             name="user_roles",
             joinColumns = {@JoinColumn(name="user_id")},
@@ -31,6 +35,11 @@ public class User {
 
     public User () {
 
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public Integer getId() {
@@ -61,6 +70,8 @@ public class User {
         return userRoles;
     }
 
+
+
     public void setUserRoles(Set<Role> userRoles) {
         if(this.userRoles == null || this.userRoles.isEmpty()) {
             this.userRoles = new HashSet<>();
@@ -69,11 +80,17 @@ public class User {
     }
 
 
-    public void addRoles(String roleName) {
+    public void addRole(String newRoleName) {
         if(this.userRoles == null || this.userRoles.isEmpty()) {
             this.userRoles = new HashSet<>();
         }
-        this.userRoles.add(new Role(roleName));
+        this.userRoles.add(new Role(newRoleName));
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                '}';
+    }
 }

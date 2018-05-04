@@ -17,11 +17,12 @@ public class Role {
 
     private String roleName;
 
-    @ManyToMany(mappedBy = "userRoles")
-    private Set<User> roleUsers;
+    @ManyToMany(mappedBy = "userRoles", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<User> roleUsers = new HashSet<>();
 
 
     public Role() {
+
     }
 
     public Role(String roleName) {
@@ -53,5 +54,13 @@ public class Role {
             this.roleUsers = new HashSet<>();
         }
         this.roleUsers = roleUsers;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "roleName='" + roleName + '\'' +
+                "hashCode=" + this.hashCode() +
+                '}';
     }
 }
