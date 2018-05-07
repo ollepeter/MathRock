@@ -91,7 +91,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 //            roleRepository.saveAndFlush(newRole);
             user.getUserRoles().add(newRole);
         }
-//        roleRepository.saveAndFlush(roleInDatabase);
+        roleRepository.saveAndFlush(roleInDatabase);
         return user;
     }
 
