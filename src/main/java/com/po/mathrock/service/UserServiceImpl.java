@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if(userRole != null) {
             newUser.getUserRoles().add(userRole);
         } else {
-            newUser.addRoles(USER_ROLE);
+            newUser.addRoles(new Role(USER_ROLE));
         }
         userRepository.save(newUser);
     }
@@ -55,5 +55,50 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public List<User> getAllUser() {
         return (List<User>) userRepository.findAll();
+    }
+
+    @Override
+    public void saveNewUser(User newUser) {
+        User userInDataBase = userRepository.findByUsername(newUser.getUsername());
+        if(userInDataBase == null) {
+            userRepository.save(newUser);
+        } else {
+            System.out.println("USER ALREADY IN DATABASE");
+        }
+    }
+
+
+    @Override
+    public void addNewRole(User user, Role role) {
+        User userInDataBase = userRepository.findByUsername(user.getUsername());
+        if(userInDataBase != null) {
+            user = userInDataBase;
+        } else {
+            userRepository.save(user);
+        }
+        Role roleInDataBase = roleRepository.findByRoleName(role.getRoleName());
+        if(roleInDataBase != null) {
+            role = roleInDataBase;
+        }
+        if(!userHasRole(user,role)) {
+            if(roleInDataBase == null) {
+                roleRepository.save(role);
+                user.addRoles(role);
+                userRepository.save(user);
+            } else {
+                roleRepository.save(roleInDataBase);
+                user.addRoles(roleInDataBase);
+                userRepository.save(user);
+            }
+        }
+    }
+
+    boolean userHasRole(User user, Role roleToCheck) {
+        for (Role role : user.getUserRoles()) {
+            if(role.getRoleName().equals(roleToCheck.getRoleName())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -20,7 +20,7 @@ public class User {
     private String password;
 
 
-    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
             name="user_roles",
             joinColumns = {@JoinColumn(name="user_id")},
@@ -31,6 +31,11 @@ public class User {
 
     public User () {
 
+    }
+
+    public User (String username, String password) {
+        this.username = username;
+        this. password = password;
     }
 
     public Integer getId() {
@@ -69,11 +74,19 @@ public class User {
     }
 
 
-    public void addRoles(String roleName) {
+    public void addRoles(Role role) {
         if(this.userRoles == null || this.userRoles.isEmpty()) {
             this.userRoles = new HashSet<>();
         }
-        this.userRoles.add(new Role(roleName));
+        this.userRoles.add(role);
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userID=" + userID +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
